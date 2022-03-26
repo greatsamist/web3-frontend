@@ -2,6 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import Card from "./Card/Card";
 import Styles from "./MyStake.module.css";
+import { utils } from "ethers";
 
 const MyStake = ({
   withdrawInput,
@@ -12,7 +13,11 @@ const MyStake = ({
   rewardAmount,
   stakeAmount,
   connected,
+  addressInput,
+  onClickGetAddress,
+  userTotal,
 }) => {
+  const { account, time, amount } = userTotal;
   return (
     <div className={Styles.root}>
       <h2 className={Styles.heading}>My stake</h2>
@@ -64,26 +69,29 @@ const MyStake = ({
           </button>
         </form>
 
-        <form>
+        <form onSubmit={onClickGetAddress} className={Styles.form}>
           <input
             type="text"
-            placeholder="Amount"
+            placeholder="input an address"
             className={Styles.input}
-            value={withdrawInput}
+            value={addressInput}
             onChange={onChangeInput}
-            id="unstake"
+            id="getAddress"
           />
-          <button
-            type="submit"
-            className={clsx({
-              [Styles.unstake_btn]: true,
-              [Styles.btn_diabled]: !connected,
-            })}
-            disabled={!connected}
-          >
-            Unstake
+          <button type="submit" className={Styles.getAddress_btn}>
+            Get Stake
           </button>
         </form>
+        <div className={Styles.user}>
+          <p>Address:{userTotal.account}</p>
+          <p>Total Stake: {amount}</p>
+          <p>Last Stake Time:{time}</p>
+
+          <h2>
+            {/* {utils.formatUnits(userTotal.stakeAmount, 18)} */}
+            {/* // Total user Stake: ${utils.formatUnits(userTotal.stakeAmount, 18)}`} */}
+          </h2>
+        </div>
       </div>
     </div>
   );
