@@ -83,13 +83,8 @@ const MyStake = ({
         </form>
         <div className={Styles.user}>
           <p>Address:{account}</p>
-          <p>Total Stake: {amount} BRT Tokens</p>
+          <p>Total Stake: {amount} </p>
           <p>Last Stake Time:{time}</p>
-
-          <h2>
-            {/* {utils.formatUnits(userTotal.stakeAmount, 18)} */}
-            {/* // Total user Stake: ${utils.formatUnits(userTotal.stakeAmount, 18)}`} */}
-          </h2>
         </div>
       </div>
     </div>
