@@ -171,7 +171,7 @@ function App() {
     window.ethereum.on("connect", eagerConnect);
     window.ethereum.on("accountsChanged", handleAccountChanged);
     window.ethereum.on("chainChanged", handleChainChanged);
-  }, []);
+  });
 
   const connectWallet = async () => {
     if (!!window.ethereum || !!window.web3) {
@@ -217,14 +217,14 @@ function App() {
 
     const stakeTx = await BRTContractInstance.stakeBRT(weiValue);
 
-    const stakeTxHash = await provider.getTransaction(stakeTx.hash);
-    const response = await stakeTx.wait();
+    await provider.getTransaction(stakeTx.hash);
+    await stakeTx.wait();
 
     setStakeInput("");
     await getStake();
-    const address = response.events[1].args[0];
-    const amountStaked = response.events[1].args[1].toString();
-    const time = response.events[1].args[2].toString();
+    // const address = response.events[1].args[0];
+    // const amountStaked = response.events[1].args[1].toString();
+    // const time = response.events[1].args[2].toString();
   };
 
   // Updating total reward
@@ -275,7 +275,7 @@ function App() {
     );
     const weiValue = utils.parseEther(withdrawInput);
     const withdrawTx = await BRTContractInstance.withdraw(weiValue);
-    const response = await withdrawTx.wait();
+    await withdrawTx.wait();
     await getAndDisplayStake();
   };
 

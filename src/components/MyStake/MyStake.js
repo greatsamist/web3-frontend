@@ -2,7 +2,6 @@ import clsx from "clsx";
 import React from "react";
 import Card from "./Card/Card";
 import Styles from "./MyStake.module.css";
-import { utils } from "ethers";
 
 const MyStake = ({
   withdrawInput,
@@ -83,8 +82,8 @@ const MyStake = ({
           </button>
         </form>
         <div className={Styles.user}>
-          <p>Address:{userTotal.account}</p>
-          <p>Total Stake: {amount}</p>
+          <p>Address:{account}</p>
+          <p>Total Stake: {amount} BRT Tokens</p>
           <p>Last Stake Time:{time}</p>
 
           <h2>
